@@ -9,22 +9,22 @@ using System.Threading.Tasks;
 
 namespace SistemaInventario.AccesoDatos.Repositorio
 {
-    public class BodegaRepositorio : Repositorio<Bodega>, IBodegaRepositorio
+    public class CategoriaRepositorio : Repositorio<Categoria>, ICategoriaRepositorio
     {
         private readonly ApplicationDbContext _db; 
 
-        public BodegaRepositorio(ApplicationDbContext db) : base(db)
+        public CategoriaRepositorio(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
-        public void Actualizar(Bodega bodega)
+        public void Actualizar(Categoria categoria)
         {
-            var bodegaBD = _db.Bodegas.FirstOrDefault(b => b.Id == bodega.Id);
-            if (bodegaBD != null)
+            var categoriaBD = _db.Bodegas.FirstOrDefault(b => b.Id == categoria.Id);
+            if (categoriaBD != null)
             {
-                bodegaBD.Nombre = bodega.Nombre;
-                bodegaBD.Descripcion = bodega.Descripcion;
-                bodegaBD.Estado = bodega.Estado;    
+                categoriaBD.Nombre = categoria.Nombre;
+                categoriaBD.Descripcion = categoria.Descripcion;
+                categoriaBD.Estado = categoria.Estado;    
                 _db.SaveChanges();
             }
         }
